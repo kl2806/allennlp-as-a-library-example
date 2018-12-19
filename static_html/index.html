@@ -66,9 +66,9 @@
                 var pieChart = new Chart(ctx, {
                     type: 'pie',
                     data: {
-                        labels: [response['label']],
+                        labels: response['all_labels'],
                         datasets: [{
-                            data: response['class_probabilities'],
+                            data: response['instance']['class_probabilities'],
                             backgroundColor: ['red', 'green', 'blue']
                         }]
                     }

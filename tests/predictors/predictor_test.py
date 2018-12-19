@@ -29,11 +29,11 @@ class TestPaperClassifierPredictor(TestCase):
         predictor = Predictor.from_archive(archive, 'paper-classifier')
 
         result = predictor.predict_json(inputs)
-
-        label = result.get("label")
+        
+        label = result.get("all_labels")
         assert label in ['AI', 'ML', 'ACL']
 
-        class_probabilities = result.get("class_probabilities")
+        class_probabilities = result.get("instance").get("class_probabilities")
         assert class_probabilities is not None
         assert all(cp > 0 for cp in class_probabilities)
         assert sum(class_probabilities) == approx(1.0)
